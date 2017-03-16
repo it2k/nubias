@@ -1,0 +1,7 @@
+services:
+  atol_hub.hub_manager.api:
+          class: Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
+          parent: oro_soap.manager.entity_manager.abstract
+          arguments:
+              - AtolHubBundle\Entity\AtolHub
+              - '@doctrine.orm.entity_manager'

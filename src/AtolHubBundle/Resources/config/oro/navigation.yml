@@ -1,0 +1,17 @@
+navigation:
+    menu_config:
+        items:
+            atol_hub.hub_tab:
+                label: ATOL
+                uri: '#'
+                extras:
+                  position: 1
+            atol_hub.index_link:
+                label: HUB list
+                route: atol_hub.hub_index
+        tree:
+            application_menu:
+                children:
+                    atol_hub.hub_tab:
+                        children:
+                            atol_hub.index_link: ~

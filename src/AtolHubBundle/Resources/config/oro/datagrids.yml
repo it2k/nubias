@@ -1,0 +1,67 @@
+datagrids:
+    atol-hub-grid:
+        source:
+            acl_resource: atol_hub.hub_view
+            type: orm
+            query:
+                select:
+                    - h.id
+                    - h.name
+                    - h.ip
+                from:
+                    - { table: AtolHubBundle:AtolHub, alias: h }
+        columns:
+            id:
+                label: ID
+            name:
+                label: Name
+            ip:
+                label: IP
+        properties:
+            id: ~
+            update_link:
+                type: url
+                route: atol_hub.hub_update
+                params:
+                    - id
+            view_link:
+                type: url
+                route: atol_hub.hub_view
+                params:
+                    - id
+            delete_link:
+                type: url
+                route: atol_hub_api_delete_atolhub
+                params:
+                    - id
+        sorters:
+            columns:
+                name:
+                    data_name: h.name
+            default:
+                name: ASC
+        filters:
+            columns:
+                name:
+                    type: string
+                    data_name: h.name
+        actions:
+            view:
+                type:          navigate
+                label:         View
+                link:          view_link
+                icon:          eye-open
+                acl_resource:  atol_hub.hub_view
+                rowAction:     true
+            update:
+                type:          navigate
+                label:         Update
+                link:          update_link
+                icon:          edit
+                acl_resource:  atol_hub.hub_update
+            delete:
+                type:          delete
+                label:         Delete
+                link:          delete_link
+                icon:          trash
+                acl_resource:  atol_hub.hub_delete

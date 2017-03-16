@@ -1,0 +1,58 @@
+{% extends 'OroUIBundle:actions:view.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+
+{% block navButtons %}
+    {% if resource_granted('EDIT', entity) %}
+        {{ UI.editButton({
+            'path' : path('atol_hub.hub_update', { id: entity.id }),
+            'entity_label': 'HUB'|trans
+        }) }}
+    {% endif %}
+
+    {% if resource_granted('DELETE', entity) %}
+        {{ UI.deleteButton({
+            'dataUrl': path('atol_hub.hub_view', {'id': entity.id}),
+            'dataRedirect': path('atol_hub.hub_index'),
+            'aCss': 'no-hash remove-button',
+            'id': 'btn-remove-vehicle',
+            'dataId': entity.id,
+            'entity_label': 'HUB'|trans,
+        }) }}
+    {% endif %}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% set breadcrumbs = {
+    'entity':      entity,
+    'indexPath':   path('atol_hub.hub_index'),
+    'indexLabel': 'HUB'|trans,
+    'entityTitle': entity.name
+    } %}
+    {{ parent() }}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% set data %}
+        <div class="widget-content">
+            <div class="row-fluid form-horizontal">
+                <div class="responsive-block">
+                    {{ UI.renderProperty('Id'|trans, entity.id) }}
+                    {{ UI.renderProperty('Name'|trans, entity.name) }}
+                </div>
+            </div>
+        </div>
+    {% endset %}
+    {% set dataBlocks = [
+    {
+    'title': 'Data'|trans,
+    'class': 'active',
+    'subblocks': [
+    { 'data' : [data] }
+    ]
+    }
+    ] %}
+
+    {% set id = 'hubView' %}
+    {% set data = { 'dataBlocks': dataBlocks } %}
+    {{ parent() }}
+{% endblock content_data %}

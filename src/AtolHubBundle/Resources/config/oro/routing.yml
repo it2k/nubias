@@ -1,0 +1,14 @@
+inventory_bundle:
+    resource: "@AtolHubBundle/Controller"
+    type: annotation
+    prefix: /atol_hub
+
+inventory_api_vehicle:
+    resource:     "@AtolHubBundle/Controller/Api/Rest/AtolHubController.php"
+    type:         rest
+    prefix:       api/rest/{version}/
+    requirements:
+        version:  latest|v1
+        _format:  json
+    defaults:
+        version:  latest

@@ -1,16 +1,19 @@
 <?php
 
 use Symfony\Component\Config\Loader\LoaderInterface;
-
 use Oro\Bundle\DistributionBundle\OroKernel;
 
+/**
+ * @author Egor Zyuskin <ezyuskin@amaxlab.ru>
+ */
 class AppKernel extends OroKernel
 {
+    /**
+     * @return array
+     */
     public function registerBundles()
     {
-        $bundles = array(
-        // bundles
-        );
+        $bundles = [];
 
         if ('dev' === $this->getEnvironment()) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
@@ -27,11 +30,17 @@ class AppKernel extends OroKernel
         return array_merge(parent::registerBundles(), $bundles);
     }
 
+    /**
+     * @param LoaderInterface $loader
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 
+    /**
+     * @throws Exception
+     */
     protected function initializeContainer()
     {
         static $first = true;

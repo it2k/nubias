@@ -1,0 +1,5 @@
+services:
+    atol_hub.form.type.hub:
+        class: AtolHubBundle\Form\Type\AtolHubType
+        tags:
+            - { name: form.type, alias: atol_hub_hub }

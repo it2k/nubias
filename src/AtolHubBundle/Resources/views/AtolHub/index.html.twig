@@ -1,0 +1,14 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+{% set pageTitle = 'Hubs'|trans %}
+
+{% block navButtons %}
+    {% if resource_granted('atol_hub.hub_create') %}
+        <div class="btn-group">
+            {{ UI.addButton({
+                'path': path('atol_hub.hub_create'),
+                'entity_label': 'Hub'|trans
+            }) }}
+        </div>
+    {% endif %}
+{% endblock %}
