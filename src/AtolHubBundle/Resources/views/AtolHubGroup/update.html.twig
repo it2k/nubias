@@ -1,0 +1,71 @@
+{# src/AppBundle/Resources/views/Task/update.html.twig #}
+
+{# extend the base template from the OroUIBundle #}
+{% extends 'OroUIBundle:actions:update.html.twig' %}
+
+{# reuse the form theme provided with the OroPlatform #}
+{% form_theme form with 'OroFormBundle:Form:fields.html.twig' %}
+
+{% set entity = form.vars.value %}
+
+{# choose the appropriate action depending on whether a task is created or modified #}
+{# this variable needs to be named formAction as this is what the base template expects #}
+{% if entity.id %}
+    {% set formAction = path('atol_hub.hub_group_update', { 'id': entity.id }) %}
+{% else %}
+    {% set formAction = path('atol_hub.hub_group_create') %}
+{% endif %}
+
+{% block navButtons %}
+    {# the cancelButton() macro creates a button that discards the
+       entered data and leads the user to the linked controller #}
+    {{ UI.cancelButton(path('atol_hub.hub_index')) }}
+
+    {# the dropdownSaveButton() macro offers a way to let the user select
+       between different options when saving an entity, the selected option
+       will be passed to the controller handling the request as an additonal
+       parameter #}
+    {{ UI.dropdownSaveButton({
+        'html': UI.saveAndCloseButton() ~ UI.saveAndStayButton()
+    }) }}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% if entity.id %}
+        {% set breadcrumbs = {
+        'entity': entity,
+        'indexPath': path('atol_hub.hub_group_index'),
+        'indexLabel': 'HUB Group',
+        'entityTitle': entity.name
+        } %}
+        {{ parent() }}
+    {% else %}
+        {% set title = 'oro.ui.create_entity'|trans({ '%entityName%': 'Hub group' }) %}
+        {{ include('OroUIBundle::page_title_block.html.twig', { title: title }) }}
+        {% endif %}
+        {% endblock pageHeader %}
+
+        {% block content_data %}
+        {% set id = 'group-edit' %}
+        {% set dataBlocks = [{
+            'title': 'General'|trans,
+            'class': 'active',
+            'subblocks': [{
+                'title': '',
+                'data': [
+                form(form),
+                ]
+            }]
+        }]
+        %}
+
+        {# the data variable is a special variable that is used in the
+           parent content_data block to render the visual content "blocks"
+           of a page #}
+        {% set data = {
+            'formErrors': form_errors(form) ? form_errors(form) : null,
+            'dataBlocks': dataBlocks,
+        } %}
+
+        {{ parent() }}
+        {% endblock content_data %}

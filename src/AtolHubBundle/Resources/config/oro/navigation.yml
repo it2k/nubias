@@ -6,12 +6,16 @@ navigation:
                 uri: '#'
                 extras:
                   position: 1
-            atol_hub.index_link:
+            atol_hub.hub_index_link:
                 label: HUB list
                 route: atol_hub.hub_index
+            atol_hub.group_index_link:
+                label: HUB group
+                route: atol_hub.hub_group_index
         tree:
             application_menu:
                 children:
                     atol_hub.hub_tab:
                         children:
-                            atol_hub.index_link: ~
+                            atol_hub.hub_index_link: ~
+                            atol_hub.group_index_link: ~

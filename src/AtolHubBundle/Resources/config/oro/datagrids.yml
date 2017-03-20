@@ -7,6 +7,7 @@ datagrids:
                 select:
                     - h.id
                     - h.name
+                    - h.active
                     - h.ip
                 from:
                     - { table: AtolHubBundle:AtolHub, alias: h }
@@ -17,6 +18,8 @@ datagrids:
                 label: Name
             ip:
                 label: IP
+            active:
+                label: Active
         properties:
             id: ~
             update_link:
@@ -45,6 +48,9 @@ datagrids:
                 name:
                     type: string
                     data_name: h.name
+                active:
+                    type: boolean
+                    data_name: h.active
         actions:
             view:
                 type:          navigate
@@ -65,3 +71,71 @@ datagrids:
                 link:          delete_link
                 icon:          trash
                 acl_resource:  atol_hub.hub_delete
+    atol-hub-group-grid:
+            source:
+                acl_resource: atol_hub.group_view
+                type: orm
+                query:
+                    select:
+                        - g.id
+                        - g.name
+                    from:
+                        - { table: AtolHubBundle:AtolHubGroup, alias: g }
+            columns:
+                id:
+                    label: ID
+                name:
+                    label: 'Name'
+            properties:
+                id: ~
+                update_link:
+                    type: url
+                    route: atol_hub.hub_group_update
+                    params:
+                        - id
+                view_link:
+                    type: url
+                    route: atol_hub.hub_group_view
+                    params:
+                        - id
+                delete_link:
+                    type: url
+                    route: atol_hub.hub_group_update
+                    params:
+                        - id
+            sorters:
+                columns:
+                    id:
+                        data_name: g.id
+                    name:
+                        data_name: g.name
+                default:
+                    id: ASC
+            filters:
+                columns:
+                    id:
+                        type: number
+                        data_name: g.id
+                    name:
+                        type: string
+                        data_name: g.name
+            actions:
+                view:
+                    type:          navigate
+                    label:         View
+                    link:          view_link
+                    icon:          eye-open
+                    acl_resource:  atol_hub.group_view
+                    rowAction:     true
+                update:
+                    type:          navigate
+                    label:         Update
+                    link:          update_link
+                    icon:          edit
+                    acl_resource:  atol_hub.group_update
+                delete:
+                    type:          delete
+                    label:         Delete
+                    link:          delete_link
+                    icon:          trash
+                    acl_resource:  atol_hub.group_delete

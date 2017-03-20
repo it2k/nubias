@@ -2,7 +2,7 @@
 
 namespace AtolHubBundle\Entity\Repository;
 
-use AtolHubBundle\Entity\AtolHub;
+use AtolHubBundle\Entity\AtolHubGroup;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -19,10 +19,10 @@ class AtolHubEventRepository extends EntityRepository
     }
 
     /**
-     * @param AtolHub $hub
+     * @param AtolHubGroup $hub
      * @return array
      */
-    public function getLastByHub(AtolHub $hub)
+    public function getLastByHub(AtolHubGroup $hub)
     {
         return $this->findBy(['hub' => $hub], ['id' => 'desc'], 50);
     }

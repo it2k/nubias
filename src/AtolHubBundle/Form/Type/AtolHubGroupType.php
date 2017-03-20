@@ -2,7 +2,7 @@
 
 namespace AtolHubBundle\Form\Type;
 
-use AtolHubBundle\Entity\AtolHub;
+use AtolHubBundle\Entity\AtolHubGroup;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @author Egor Zyuskin <ezyuskin@amaxlab.ru>
  */
-class AtolHubType extends AbstractType
+class AtolHubGroupType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,11 +20,6 @@ class AtolHubType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('groups')
-            ->add('ip')
-            ->add('username', 'text', array('data' => 'user'))
-            ->add('password', 'text', array('data' => 'Password_1'))
-            ->add('active')
         ;
     }
 
@@ -34,12 +29,12 @@ class AtolHubType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => AtolHub::class,
+            'data_class' => AtolHubGroup::class,
         ));
     }
 
     public function getName()
     {
-        return 'atol_hub_hub';
+        return 'atol_hub_group';
     }
 }

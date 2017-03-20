@@ -123,7 +123,7 @@ class AtolHub
     private $errorsInLog;
 
     /**
-     * @var AtolHub
+     * @var AtolHubGroup
      *
      * @ORM\ManyToMany(targetEntity="AtolHubBundle\Entity\AtolHubGroup", inversedBy="hubs")
      * @ORM\JoinTable(name="atol_hubs_groups")

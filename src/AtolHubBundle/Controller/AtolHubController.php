@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AtolHubController extends Controller
 {
     /**
-     * @Route("/", name="atol_hub.hub_index")
+     * @Route("/hub/", name="atol_hub.hub_index")
      * @Template
      * @Acl(
      *     id="atol_hub.hub_view",
@@ -32,7 +32,7 @@ class AtolHubController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="atol_hub.hub_view", requirements={"id"="\d+"})
+     * @Route("/hub/{id}", name="atol_hub.hub_view", requirements={"id"="\d+"})
      * @Template
      * @AclAncestor("atol_hub.hub_view")
      *
@@ -46,7 +46,7 @@ class AtolHubController extends Controller
     }
 
     /**
-     * @Route("/create", name="atol_hub.hub_create")
+     * @Route("/hub/create", name="atol_hub.hub_create")
      * @Template("AtolHubBundle:AtolHub:update.html.twig")
      *
      * @param Request $request
@@ -59,7 +59,7 @@ class AtolHubController extends Controller
     }
 
     /**
-     * @Route("/update/{id}", name="atol_hub.hub_update", requirements={"id":"\d+"}, defaults={"id":0})
+     * @Route("/hub/update/{id}", name="atol_hub.hub_update", requirements={"id":"\d+"}, defaults={"id":0})
      * @Template("AtolHubBundle:AtolHub:update.html.twig")
      *
      * @param AtolHub $atolHub

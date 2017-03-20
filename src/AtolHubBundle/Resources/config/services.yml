@@ -5,3 +5,9 @@ services:
           arguments:
               - AtolHubBundle\Entity\AtolHub
               - '@doctrine.orm.entity_manager'
+  atol_hub.group_manager.api:
+          class: Oro\Bundle\SoapBundle\Entity\Manager\ApiEntityManager
+          parent: oro_soap.manager.entity_manager.abstract
+          arguments:
+              - AtolHubBundle\Entity\AtolHubGroup
+              - '@doctrine.orm.entity_manager'
