@@ -59,7 +59,7 @@ class AtolHubController extends Controller
     }
 
     /**
-     * @Route("/update", name="atol_hub.hub_update")
+     * @Route("/update/{id}", name="atol_hub.hub_update", requirements={"id":"\d+"}, defaults={"id":0})
      * @Template("AtolHubBundle:AtolHub:update.html.twig")
      *
      * @param AtolHub $atolHub
